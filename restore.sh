@@ -1,6 +1,9 @@
 #!/bin/bash
 
 restore() {
+    LOG_FILE="$1_$(date +%F).log"
+    exec &> >(tee -a "$LOG_FILE")
+    
     if [ $# -ne 2 ]; then
          echo "Enter the path to the archive file followed by a destination directory."
          exit 1
