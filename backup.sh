@@ -1,7 +1,5 @@
 #!/bin/bash
 backup() {
-    LOG_FILE="$1_$(date +%F).log"
-    exec &> >(tee -a "$LOG_FILE")
 
     if [ $# -ne 2 ]; then
         echo "enter a source directory followed by a destination directory"
