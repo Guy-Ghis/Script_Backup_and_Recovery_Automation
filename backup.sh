@@ -1,14 +1,18 @@
 #!/bin/bash
 backup() {
+    LOG_FILE="$1_$(date +%F).log"
+    exec &> >(tee -a "$LOG_FILE")
 
     if [ $# -ne 2 ]; then
         echo "enter a source directory followed by a destination directory"
+        sleep 1
         exit 1
     fi
     source_d=$1
     dest_d=$2
     if [ ! -d "$source_d" ]; then
         echo "the source directory does not exist"
+        sleep 1
         exit 1
     fi
     if [ ! -d "$dest_d" ]; then
